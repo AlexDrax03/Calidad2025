@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>REGISTRARSE</title>
+    <script th:src="@{/js/scripts.js}"></script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/checkout/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{../assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link th:href="@{/form-validation.css}" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="../assets/img/favicon2.png" alt="" width="120" height="120">
+      <h2>REGISTRARSE</h2>
+    </div>
+    <div class="row g-5 d-flex justify-content-center">
+      <div class="col-md-7 col-lg-8">
+
+        <form th:action="@{/cliente/registro}"  th:object="${cliente}" onsubmit="return  validaciones()" method="post">
+          <input type="hidden" th:field="*{id}">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">NOMBRES</label>
+              <input type="text" th:field="*{nombre}" class="form-control" pattern="^[A-Za-zñÑ\s]{3,30}" id="firstName" placeholder="" value="" required>
+              
+              
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">APELLIDOS</label>
+              <input type="text"   class="form-control" name="apellido" id="lastName" pattern="^[A-Za-zñÑ\s]{3,30}" placeholder="" th:value="${apellido}" required>
+              
+            </div>
+            <div class="col-12">
+                <label for="email" class="form-label">NUMERO DE CELULAR </label>
+                <input  type="text"  class="form-control" th:field="*{telefono}" pattern="^9[0-9]{8}$" id="celular" placeholder="987654321" required>
+                
+              </div>
+              <div th:if="${valid_telf}">
+                <p th:text="${valid_telf}" style="color: red;">TELF DUPLI</p>
+              </div>
+              
+            <div class="col-sm-6">
+              <label for="email" class="form-label">EMAIL </label>
+              <input  type="email" class="form-control" th:field="*{correo}" id="email" pattern="[a-zA-Z0-9ñÑ@!#$%.]{11,50}" placeholder="tucorreo@ejemplo.com" required title="Por favor, ingresa un correo válido de 11 a 20 caracteres con el dominio '@'">
+
+            
+            </div>
+            <div th:if="${valid_email}">
+              <p th:text="${valid_email}" style="color: red;">EMAIL DUPLI</p>
+            </div>
+            <div class="col-sm-6">
+              <label for="username" class="form-label">
+                USUARIO
+                <span th:if="${valid_user}" th:text="${valid_user}" style="color: red;">
+                    USER DUPLI
+                </span>
+
+              </label>
+              <input  type="text" class="form-control"  name="username" id="username" pattern="[a-zA-Z0-9ñÑ@!#$%]{4,25}"
+              placeholder="username" required>
+            </div>
+            
+
+            <div class="col-sm-6">
+              <label for="clave" class="form-label">CONTRASEÑA</label>
+              <input   type="password" class="form-control" th:field="*{clave}" pattern="[a-zA-ZñÑ0-9@!#$%]{4,25}" id="clave" placeholder="Ingrese su clave" required>
+              
+            </div>
+            <div class="col-sm-6">
+              <label for="clave2" class="form-label">REPITA SU CONTRASEÑA</label>
+              <input type="password" class="form-control" name="clave2" id="clave2" pattern="[a-zA-ZñÑ0-9@!#$%]{4,25}" placeholder="Ingrese nuevamente" required>
+              
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">DIRECCION <span class="text-muted">(opcional)</span></label>
+              <input  type="text" class="form-control" th:field="*{direccion}" id="address" placeholder="Av HermanosHeraso 123">
+             
+            </div>
+            <div class="col-md-5">
+              <label for="country" class="form-label">DISTRITO <span class="text-muted">(opcional)</span></label>
+              <select class="form-select" id="country">
+                <option  value=""disabled selected>Escoge tu distrito</option>
+                <option>BREÑA</option>
+                <option>CERCADO DE LIMA</option>
+                <option>JESÚS MARÍA</option>
+                <option>LINCE</option>
+                <option>PUEBLO LIBRE</option>
+                <option>SAN MIGUEL</option>
+                <option>SAN ISIDRO</option>
+                
+
+              </select>
+              <div class="invalid-feedback">
+                Por favor seleccione un distrito válido.
+              </div>
+            </div>
+          <hr class="my-4">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="terminos">
+            <label class="form-check-label" for="terminos">Acepto términos y condiciones</label>
+          </div>
+
+          <hr class="my-4">
+          <button class="w-100 btn btn-primary btn-lg" type="submit">REGISTRARSE</button>
+
+          
+        </form>
+        
+        <button onclick="window.location.href='/'" class="btn btm-secondary">
+          Salir
+        </button>
+        
+
+        <script>
+          function validaciones() {
+            var contrasena = document.getElementById("clave").value;
+            var confirmarContrasena = document.getElementById("clave2").value;
+            var checkbox = document.getElementById("terminos");
+
+
+            if (contrasena !== confirmarContrasena) {
+                alert("Las contraseñas no coinciden.");
+                return false; // Evita el envío del formulario
+            }else{
+
+              if (!checkbox.checked) {
+                  alert("Debes aceptar los términos y condiciones.");
+                  return false; // Evita el envío del formulario
+              }else{
+                return true; // Permite el envío del formulario
+              }
+            }
+
+              
+              
+          }
+      </script>
+
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="layouts/plantilla::footer"></footer>
+</div>
+
+
+    <script th:src="@{../assets/dist/js/bootstrap.bundle.min.js}"></script>
+
+      <script th:src="@{/form-validation.js}"></script>
+  </body>
+</html>
