@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head th:replace="layouts/plantilla_extranet::cabeza"></head>
+<body id="page-top">
+    <div id="wrapper"> 
+        <ul th:replace="layouts/plantilla_extranet::contenidoizquierdo"></ul>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav th:replace="layouts/plantilla_extranet::contenidoarriba"></nav>
+        <!-- CONTENIDO -->
+        <div class="container-fluid">
+
+                    <div class="alert alert-warning alert-dismissible fade show" th:if="${mensaje != null}" role="alert">
+
+                        <span th:text="${mensaje}"></span>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                    </div>
+
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">CARRITO</h1>
+            </div>
+            <form th:action="@{/extranet/carrito/guardar}" th:object="${carrito}" method="post">
+                <div class="card-body">
+                    <input type="hidden">
+                    <div class="row">
+          
+                        <div class="col-md-6 mb-3" >
+                            <label>Producto: <span style="color: gray"></span></label>
+                            <select class="form-select" id="opciones" onchange="redirigir()">
+                                <option  value="" disabled selected>Selecciona un tipo de producto</option>
+                                <option value="bebida">BEBIDA</option>
+                                <option value="menu">MENU</option>
+                                <option value="pollo">POLLO</option>
+                                <option value="piqueo">PIQUEO</option>
+                                <option value="combo">COMBO</option>
+                            </select>
+                        </div>
+                     
+                        
+                </div>
+
+            </form>
+
+            <br><br>
+                <div class="card ">
+                    <div class="card-header">
+                        Productos añadidos
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>NOMBRE</th>
+                                        <th>PRECIO</th>
+                                        <th>CANTIDAD</th>
+                                        <th>SUBTOTAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="item: ${listaCarrrito}">
+                                        <td th:text="${item.nombre}"></td>
+                                        <td th:text="${item.precio}"></td>
+                                        <td th:text="${item.cantidad}"></td>
+                                        <td th:text="${item.subtotal}"></td>
+                                        <td class="text-center">
+                                            <a th:href="@{eliminar/} + ${item.id}" class="btn btn-danger"
+                                            onclick="return confirm('Desea eliminar el producto? ')">
+                                                <i class="fa-solid fa-trash-can"></i> Eliminar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                            
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>TOTAL</th>
+                    
+                                    </tr>
+                                </thead>
+
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                            
+                        <button type="submit" class="btn btn-success" >
+                            <a class="fa-solid fa-floppy-disk" th:href=@{/extranet/pagot}>PAGAR CON TARJETA</a>
+                        </button>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a>Pago con efectivo o yape</a>
+                          </button>
+                    </div>
+                </div>
+
+        </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div th:replace="layouts/plantilla_extranet::pie"></div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Pago exitoso</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         !Gracias por su compra¡
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script>
+        function redirigir() {
+          // Obtén el valor seleccionado del ComboBox
+          var seleccion = document.getElementById("opciones").value;
+          // Redirige a la página seleccionada
+          if (seleccion) {
+            window.location.href = seleccion;
+          }
+        }
+      </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="layouts/plantilla::cabecera"></head>
+    <body>
+        <header th:replace="layouts/plantilla::titulo"></header>
+        <!-- Navigation-->
+        <nav th:replace="layouts/plantilla::opciones"></nav>
+        <section class="page-section clearfix">
+            <div class="container">
+                <div class="intro">
+                    <img class="intro-img img-fluid mb-2 mb-lg-2 rounded" th:src="@{/assets/img/imagen_index_1.jpg}" alt="..." />
+                    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-upper">Pollos</span>
+                            <span class="section-heading-lower">Pollo a la brasa</span>
+                        </h2>
+                        <p class="mb-3">En un bol, mezcla el comino, la pimienta negra y una cucharada de sal. Reserva. En otro bol, mezcla la mostaza, la cerveza negra, el vinagre, el sillao, el ají panca y el ajo. Incorpora la mezcla seca. Coloca el pollo en una asadera alta y báñalo con la preparación anterior. Lleva la asadera al refrigerador durante 12 horas, dándole vueltas al pollo de vez en cuando para que cada lado se bañe en el jugo de maceración. Lleva al horno precalentado a 180 °C entre 45 y 50 minutos, aproximadamente. Retira, corta el pollo en cuatro partes y sirve.</p>
+                        <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="#!">VISITANOS</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section cta">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 mx-auto">
+                        <div class="cta-inner bg-faded text-center rounded">
+                            <h2 class="section-heading mb-4">
+                                <span class="section-heading-upper">Nuestro Compromiso</span>
+                            </h2>
+                            <p class="mb-0">En nuestra pollería, nuestro compromiso es ser la fuente de tu alegría,
+                                con pollo delicioso que te haga bailar como una gallina loca todo el día.
+                                Si no estás contento con lo que te servimos, no hay drama ni gritos,
+                                simplemente nos aseguraremos de que encuentres el sabor adecuado que necesitas.
+                                Así que ven a nuestra pollería, donde siempre encontrarás felicidad y sabores sabrosos,
+                                y si no te gusta, siempre puedes culpar a los pollos rebeldes y revoltosos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       <div th:replace="layouts/plantilla::pie"></div> 
+    </body>
+</html>

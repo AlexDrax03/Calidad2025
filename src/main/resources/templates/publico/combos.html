@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="layouts/plantilla::cabecera"></head>
+    <body>
+        <header th:replace="layouts/plantilla::titulo"></header>
+        <!-- Navigation-->
+        <nav th:replace="layouts/plantilla::opciones"></nav>
+        <section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    <div class="product-item-title d-flex">
+                        <div class="bg-faded p-5 d-flex ms-auto rounded">
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">Los mejores platos</span>
+                                <span class="section-heading-lower">Combo Especial</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" th:src="@{assets/img/combo/productos-01.jpg}" alt="..." />
+                    <div class="product-item-description d-flex me-auto">
+                        <div class="bg-faded p-5 rounded"><p class="mb-0">Un pollo mas una porción de papas familiar mas una ensalada clásica mas un chaufa y de paso una gaseosa de litro y medio a tan sólo 75 soles.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    <div class="product-item-title d-flex">
+                        <div class="bg-faded p-5 d-flex me-auto rounded">
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">Para toda la familia</span>
+                                <span class="section-heading-lower">COMBO 2</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" th:src="@{assets/img/combo/productos-02.jpg}" alt="..." />
+                    <div class="product-item-description d-flex ms-auto">
+                        <div class="bg-faded p-5 rounded"><p class="mb-0">Un pollo mas una porción de papas familiar con su ensalada clásica y una gaseosa pepsi de litro y medio a tan sólo 60 soles.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    <div class="product-item-title d-flex">
+                        <div class="bg-faded p-5 d-flex ms-auto rounded">
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">Cinco para la mesa</span>
+                                <span class="section-heading-lower">COMBO 3</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="assets/img/combo/productos-03.jpg" alt="..." />
+                    <div class="product-item-description d-flex me-auto">
+                        <div class="bg-faded p-5 rounded"><p class="mb-0">Un pollo y un cuarto mas una porción de papas familiar con su ensalada clásica y su pepsi de litro y medio a solo 67 soles.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    <div class="product-item-title d-flex">
+                        <div class="bg-faded p-5 d-flex me-auto rounded">
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">Al fondo hay sitio</span>
+                                <span class="section-heading-lower">COMBO 4</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="assets/img/combo/productos-04.jpg" alt="..." />
+                    <div class="product-item-description d-flex ms-auto">
+                        <div class="bg-faded p-5 rounded"><p class="mb-0">Un pollo y medio mas una porción de papas familiar con su ensalada clásica y una gaseosa de litro y medio a tan sólo 80 soles.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div th:replace="layouts/plantilla::pie"></div> 
+    </body>
+</html>
